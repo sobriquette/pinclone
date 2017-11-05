@@ -1,9 +1,14 @@
-{% if all_pins_list %}
+{% if pins_list %}
 	<div class="pins">
-		{% for pin in all_pins_list %}
+		{% for pin in pins_list %}
 			<div class="pin">
-				<p>{{ pin.title }}</p>
-				<p>{{ pin.description  }}</p>
+				<p>Title: {{ pin.title }}</p>
+				<p>Desc: {{ pin.description }}</p>
+				<p>Likes: {{ pin.like_count }}</p>
+				<a href="{{ pin.link }}">Source</a>
+				{% for img in pin.images.all %}
+					<a href="{{ img.url }}">Image</a>
+				{% endfor %}
 			</div>
 		{% endfor %}
 	</div>

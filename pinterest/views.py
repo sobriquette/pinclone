@@ -1,19 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Pin
+from django.template import loader
+from .models import Image, Pin
 
 def index(request):
-	all_pins_list = {}
-	pin_attrs = ['description', 'link', 'title', 'image']
+	# all_imgs_list = {}
 	
-	for pin in Pin.objects.all().select_related('image'):
-		all_pins_list[pin.pin_id] = {}
-		image = pin.image
+	# for img in Image.objects.all().select_related('pin'):
+	# 	all_imgs_list[img.image_id] = {}
+	# 	pin = img.pin
 
-		for attr in pin_attrs:
-			if attr == 'image':
-				all_pins_list[pin.pin_id][attr] = image.url
-			else:
-				all_pins_list[pin.pin_id][attr] = pin.attr
+	# 	all_imgs_list[img.image_id]['url'] = img.url
+	# 	all_imgs_list[img.image_id]['pin'] = {}
 
-	return HttpResponse(all_pins_list)
+	# 	# TODO: Refactor so we don't have to list these individually
+	# 	all_imgs_list[img.image_id]['pin']['description'] = pin.description
+	# 	all_imgs_list[img.image_id]['pin']['like_count'] = pin.like_count
+	# 	all_imgs_list[img.image_id]['pin']['link'] = pin.link
+	# 	all_imgs_list[img.image_id]['pin']['title'] = pin.title
+
+	pins = Pin.objects.all()
+	template = loader.get_template('pinterest/index.html')
+	context = {
+		'pins_list': pins,
+	}
+
+	return HttpResponse(template.render(context, request))

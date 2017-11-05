@@ -8,9 +8,9 @@ class Pinner:
 			'full_name',
 			'username'
 		}
+		self.boards = {}
 		self.__dict__.update((k, v) for k, v in kwargs.items() \
 									if k in self.allowed_keys)
-		self.boards = {}
 
 	def add_board(self, board_id, board):
 		if board_id not in self.boards:
@@ -28,7 +28,6 @@ class Pin:
 		}
 		self.__dict__.update((k, v) for k, v in kwargs.items() \
 									if k in self.allowed_keys)
-
 class Board:
 	def __init__(self, **kwargs):
 		self.allowed_keys = {
@@ -37,9 +36,9 @@ class Board:
 			'pinner',
 			'url'
 		}
+		self.pins = {}
 		self.__dict__.update((k, v) for k, v in kwargs.items() \
 									if k in self.allowed_keys)
-		self.pins = {}
 
 	def add_pin(self, pin_id, pin):
 		if pin_id not in self.pins:
@@ -70,7 +69,7 @@ def write_fixtures(obj, model_name):
 	filename = model_name + 's'
 
 	with open(filename + file_ext, 'w') as f:
-		f.write('[ \n')
+		f.write('[\n')
 
 		for obj, data in obj.items():
 			tmp = dict(data.__dict__)
@@ -81,9 +80,9 @@ def write_fixtures(obj, model_name):
 					del tmp[e]
 
 			f.write('\t{\n' + \
-						'\t\t"model": "pinterest.{}",\n'.format(model_name) + \
-					 	'\t\t"pk": {},\n'.format(obj) + \
-					 	'\t\t"fields": {}\n'.format(json.JSONEncoder(indent=8).encode(tmp)) + \
+					'\t"model": "pinterest.{}",\n'.format(model_name) + \
+				 	'\t"pk": {},\n'.format(obj) + \
+				 	'\t"fields": {}\n'.format(json.JSONEncoder(indent=8).encode(tmp)) + \
 					'\t},\n')
 
 		f.write(']')
@@ -105,8 +104,8 @@ if __name__ == "__main__":
 			# making a Pin
 			if item['id'] not in pins:
 				curr_pin = Pin(
-					pin_id=item['id'],
-					board=board_data['id'],
+					pin_id=int(item['id']),
+					board=int(board_data['id']),
 					description=item['description_html'],
 					like_count=item['like_count'],
 					link=item['link'],
@@ -119,7 +118,7 @@ if __name__ == "__main__":
 			# making a Pinner
 			if pinner_data['id'] not in pinners:
 				curr_pinner = Pinner(
-					pinner_id=pinner_data['id'],
+					pinner_id=int(pinner_data['id']),
 					avatar=pinner_data['image_small_url'],
 					full_name=pinner_data['full_name'],
 					username=pinner_data['username']
@@ -132,20 +131,19 @@ if __name__ == "__main__":
 			# making Board
 			if board_data['id'] not in boards:
 				curr_board = Board(
-					board_id=board_data['id'],
+					board_id=int(board_data['id']),
 					name=board_data['name'],
-					pinner=board_data['owner'],
+					pinner=int(board_data['owner']['id']),
 					url=board_data['url']
 				)
-
 				boards[curr_board.board_id] = curr_board
 			else:
 				curr_board = boards[board_data['id']]
 
 			if images_data['orig']['url'] not in images:
 				curr_image = Image(
-					tem['image_signature'], 
-					item['id'], 
+					str(item['image_signature']), 
+					int(item['id']), 
 					images_data['orig']['url']
 				)
 				images[curr_image.image_id] = curr_image
@@ -153,7 +151,6 @@ if __name__ == "__main__":
 
 			curr_board.add_pin(curr_pin.pin_id, curr_pin)
 			curr_pinner.add_board(curr_board.board_id, curr_board)
-
 
 	# create files for fixtures to import into Django DB
 	write_fixtures(pinners, 'pinner')
