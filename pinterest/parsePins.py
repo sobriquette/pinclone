@@ -3,7 +3,7 @@ import json
 class Pinner:
 	def __init__(self, **kwargs):
 		self.allowed_keys = {			
-			'id_',
+			'pinner_id',
 			'avatar',
 			'full_name',
 			'username'
@@ -19,9 +19,9 @@ class Pinner:
 class Pin:
 	def __init__(self, **kwargs):
 		self.allowed_keys = {
-			'id_',
+			'pin_id',
+			'board',
 			'description',
-			'images',
 			'like_count',
 			'link',
 			'title'
@@ -32,9 +32,9 @@ class Pin:
 class Board:
 	def __init__(self, **kwargs):
 		self.allowed_keys = {
-			'id_',
+			'board_id',
 			'name',
-			'owner',
+			'pinner',
 			'url'
 		}
 		self.__dict__.update((k, v) for k, v in kwargs.items() \
@@ -45,23 +45,54 @@ class Board:
 		if pin_id not in self.pins:
 			self.pins[pin_id] = pin
 
+class Image:
+	def __init__(self, image_id, pin, url=None):
+		self.image_id = image_id
+		self.pin = pin
+		self.url = url
 
 def print_collection(obj):
 	ignored_attr = {'allowed_keys'}
+	# iterate through dictionary of Pinner objects
 	for k, v in obj.items():
 		print(v)
 		attrs = vars(v)
+		# get all attributes of current Pinner object
 		for attr, val in attrs.items():
-			if '__' in attr or attr == 'allowed_keys':
-				continue
-			if attr == 'boards':
-				print_collection(val)
-			print("{}: {}".format(attr, val))
+			if '__' not in attr or attr not in ignored_attr:
+				if attr == 'boards':
+					print_collection(val)
+				print("{}: {}".format(attr, val))
+		print("\n")
+
+def write_fixtures(obj, model_name):
+	file_ext = '.json'
+	filename = model_name + 's'
+
+	with open(filename + file_ext, 'w') as f:
+		f.write('[ \n')
+
+		for obj, data in obj.items():
+			tmp = dict(data.__dict__)
+			ignored_attr = {'allowed_keys', 'boards', 'pins'}
+
+			for e in ignored_attr:
+				if e in tmp:
+					del tmp[e]
+
+			f.write('\t{\n' + \
+						'\t\t"model": "pinterest.{}",\n'.format(model_name) + \
+					 	'\t\t"pk": {},\n'.format(obj) + \
+					 	'\t\t"fields": {}\n'.format(json.JSONEncoder(indent=8).encode(tmp)) + \
+					'\t},\n')
+
+		f.write(']')
 
 if __name__ == "__main__":
 	pins = {}
 	pinners = {}
 	boards = {}
+	images = {}
 
 	with open('pins_formatted.json') as json_file:
 		data = json.load(json_file)
@@ -71,44 +102,75 @@ if __name__ == "__main__":
 			images_data = item['images']
 			board_data = item['board']
 
+			# making a Pin
 			if item['id'] not in pins:
 				curr_pin = Pin(
-					id_=item['id'],
+					pin_id=item['id'],
+					board=board_data['id'],
 					description=item['description_html'],
-					images=images_data,
 					like_count=item['like_count'],
 					link=item['link'],
 					title=item['title']
 				)
-				pins[curr_pin.id_] = curr_pin
+				pins[curr_pin.pin_id] = curr_pin
 			else:
 				curr_pin = pins[item['id']]
 
+			# making a Pinner
 			if pinner_data['id'] not in pinners:
 				curr_pinner = Pinner(
-					id_=pinner_data['id'],
+					pinner_id=pinner_data['id'],
 					avatar=pinner_data['image_small_url'],
 					full_name=pinner_data['full_name'],
 					username=pinner_data['username']
 				)
 
-				pinners[curr_pinner.id_] = curr_pinner
+				pinners[curr_pinner.pinner_id] = curr_pinner
 			else:
 				curr_pinner = pinners[pinner_data['id']]
 
+			# making Board
 			if board_data['id'] not in boards:
 				curr_board = Board(
-					id_=board_data['id'],
+					board_id=board_data['id'],
 					name=board_data['name'],
-					owner=board_data['owner'],
+					pinner=board_data['owner'],
 					url=board_data['url']
 				)
 
-				boards[curr_board.id_] = curr_board
+				boards[curr_board.board_id] = curr_board
 			else:
 				curr_board = boards[board_data['id']]
 
-			curr_board.add_pin(curr_pin.id_, curr_pin)
-			curr_pinner.add_board(curr_board.id_, curr_board)
+			if images_data['orig']['url'] not in images:
+				curr_image = Image(
+					tem['image_signature'], 
+					item['id'], 
+					images_data['orig']['url']
+				)
+				images[curr_image.image_id] = curr_image
 
-	print_collection(pinners)
+
+			curr_board.add_pin(curr_pin.pin_id, curr_pin)
+			curr_pinner.add_board(curr_board.board_id, curr_board)
+
+
+	# create files for fixtures to import into Django DB
+	write_fixtures(pinners, 'pinner')
+	write_fixtures(boards, 'board')
+	write_fixtures(pins, 'pin')
+	write_fixtures(images, 'image')
+	# print_collection(pinners)
+
+
+
+
+
+
+
+
+
+
+
+
+

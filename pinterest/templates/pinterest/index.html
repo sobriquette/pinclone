@@ -1,0 +1,10 @@
+{% if all_pins_list %}
+	<div class="pins">
+		{% for pin in all_pins_list %}
+			<div class="pin">
+				<p>{{ pin.title }}</p>
+				<p>{{ pin.description  }}</p>
+			</div>
+		{% endfor %}
+	</div>
+{% endif %}
