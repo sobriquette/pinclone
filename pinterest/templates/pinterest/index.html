@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'pinterest/css/pins.css' %}" />
+
 {% if pins_list %}
 	<div class="pins">
 		{% for pin in pins_list %}
