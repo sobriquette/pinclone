@@ -1,16 +1,22 @@
+{% include 'pinterest/header.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Bootstrap compiled and minified CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="{% static 'css/pins.css' %}" />
-	<title>{% block title %} Pin-mini {% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'pinterest/css/pins.css' %}" />
+	<title>{% block title %} Pinmini {% endblock %}</title>
 </head>
 <body>
-	<div id="sidebar">
-		{% block sidebar %}
+	{% block header %}{% endblock %}
+	{% block content %}{% endblock %}
 
-		{% endblock %}
-	</div>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<!-- Bootstrap compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

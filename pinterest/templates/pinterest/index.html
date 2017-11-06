@@ -1,12 +1,12 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'pinterest/css/pins.css' %}" />
+{% extends 'pinterest/base.html' %}
 
+{% block content %}
 {% if pins_list %}
 	<div class="pins">
 		{% for pin in pins_list %}
 			<div class="pin">
 				<p>Title: {{ pin.title }}</p>
-				<p>Desc: {{ pin.description }}</p>
+				<p >Desc: {{ pin.description }}</p>
 				<p>Likes: {{ pin.like_count }}</p>
 				<a href="{{ pin.link }}">Source</a>
 				{% for img in pin.images.all %}
@@ -16,3 +16,4 @@
 		{% endfor %}
 	</div>
 {% endif %}
+{% endblock %}
