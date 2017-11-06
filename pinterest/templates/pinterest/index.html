@@ -5,13 +5,13 @@
 	<div class="pins">
 		{% for pin in pins_list %}
 			<div class="pin">
+				{% for img in pin.images.all %}
+					<img src="{{ img.url }}" height="136" width="136">
+				{% endfor %}
 				<p>Title: {{ pin.title }}</p>
 				<p >Desc: {{ pin.description }}</p>
 				<p>Likes: {{ pin.like_count }}</p>
 				<a href="{{ pin.link }}">Source</a>
-				{% for img in pin.images.all %}
-					<a href="{{ img.url }}">Image</a>
-				{% endfor %}
 			</div>
 		{% endfor %}
 	</div>
