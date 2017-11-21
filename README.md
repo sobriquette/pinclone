@@ -17,6 +17,14 @@ Django also seemed like a good way to understanding the technology stack used at
 Example
 ```
 
+## Setup
+Instructions to install Django are [here](https://docs.djangoproject.com/en/1.11/topics/install/#installing-official-release). All my python packages are installed through pip.
+
+I also created a virtual envrionment with virtualenv and virtualenvwrapper to install the packages I'm using for the project. The best tutorial I've found for setting this up is [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
+
+On the front-end, I decided to go with React (which I have installed but have yet to use) and setup Webpack and Babel while I was at it. Make sure you have Bower and npm installed. This [tutorial](http://gregblogs.com/how-django-reactjs-and-browserify/) is what I followed to incorporate the front-end tools into Django.
+
+
 ## Architectural Considerations
 
 Filling in later.

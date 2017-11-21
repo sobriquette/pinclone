@@ -1,0 +1,59 @@
+.navbar {
+	margin-bottom: 0;
+}
+
+.container-fluid {
+	width: 100%;
+}
+
+.logo {
+	margin-left: 25px;
+	margin-right: 15px;
+}
+
+.pin-logo {
+	margin-top: 10px;
+	path {
+		fill: #bd081c;
+	}
+}
+
+.search-icon,
+.notifications-icon,
+.settings-icon {
+	path {
+		fill: #b5b5b5;
+	}
+}
+
+.search-bar {
+	background-color: #efefef;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	padding: 10px 40px;
+	width: 1500px;
+}
+
+.search-btn {
+	background-color: transparent;
+	padding: 10px;
+	position: absolute;
+}
+
+.notifications-btn {
+	margin: 12px 15px;
+
+}
+
+.search-btn,
+.notifications-btn,
+.settings-btn {
+	border: none;
+}
+
+#home {
+	a:active {
+		color: #000000;
+	}
+}
