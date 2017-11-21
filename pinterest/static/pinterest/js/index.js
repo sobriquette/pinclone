@@ -2,6 +2,7 @@
 // var pinsList = document.getElementById('pins-list');
 var $pinsList = $('#pins-list');
 var numPins = $('.pin').length;
+var listView = new infinity.ListView($pinsList);
 var nextItem = 1;
 
 var removePin = function( id ) {
@@ -20,11 +21,10 @@ var updatePinsList = function( container, from, to, isDown ) {
 };
 
 var loadMore = function( count ) {
-	console.log("loadMore");
 	for (var i = 0; i < count; i++) {
 		var randID = Math.floor( ( Math.random() * i ) + 1);
-		var item = $('#pin-id-' + i).clone();
-		pinsList.append(item);
+		var $item = $('#pin-id-' + i).clone().attr('id', 'pin-id-' + (count + i));
+		listView.append($item);
 	}
 };
 
@@ -35,5 +35,10 @@ $(document).ready(function() {
 		gutter: 20,
 		fitWidth: true
 	});
-	// pinsList.addEventListener('scroll', loadMore( numPins ));
+	
+	// loadMore( numPins );
+	// $firstNode = document.getElementById('pin-id-1');
+	// $el = $firstNode.cloneNode(true).attr('id', 'pin-id-49');
+	// console.log($el);
+	listView.append($el);
 });

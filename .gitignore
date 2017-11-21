@@ -1,10 +1,11 @@
 # Project-specific
 package-lock.json
-/node_modules/*
-/pinterest/node_modules
-/pinterest/package-lock.json
-/pinterest/webpack-stats.json
-/pinterest/.sass-cache/*
+node_modules/*
+pinterest/node_modules
+pinterest/package-lock.json
+pinterest/webpack-stats.json
+pinterest/.sass-cache/*
+pinterest/static/pinterest/.sass-cache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,3 +1,5 @@
+@import 'variables';
+
 .navbar {
 	margin-bottom: 0;
 }
@@ -8,13 +10,14 @@
 
 .logo {
 	margin-left: 25px;
-	margin-right: 15px;
+	margin-right: $margin-padding;
 }
 
 .pin-logo {
 	margin-top: 10px;
+	
 	path {
-		fill: #bd081c;
+		fill: $pinterest-red;
 	}
 }
 
@@ -27,33 +30,60 @@
 }
 
 .search-bar {
-	background-color: #efefef;
+	background-color: $pinterest-gray;
 	border: none;
 	border-radius: 0;
 	box-shadow: none;
 	padding: 10px 40px;
-	width: 1500px;
+	width: 450px;
+
+	@media (min-width: $tablet) {
+		display: none;
+	}
+
+	@media (min-width: $desktop) {
+		display: inline-block;
+	}
+
+	@media (min-width: $widescreen) {
+		display: 1500px;
+	}
 }
 
 .search-btn {
 	background-color: transparent;
 	padding: 10px;
 	position: absolute;
-}
 
-.notifications-btn {
-	margin: 12px 15px;
+	@media (min-width: $tablet) {
+		margin-left: $margin-padding;
+		position: relative;
+	}
 
+	@media (min-width: $desktop) {
+		margin-left: 0;
+		position: absolute;
+	}
 }
 
 .search-btn,
 .notifications-btn,
 .settings-btn {
 	border: none;
+	background-color: transparent;
+}
+
+.notifications-btn,
+.settings-btn {
+	margin: 12px $margin-padding 0;
 }
 
 #home {
 	a:active {
 		color: #000000;
 	}
+}
+
+.nav-btns {
+	margin-right: $margin-padding;
 }

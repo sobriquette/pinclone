@@ -1,9 +1,6 @@
+@import 'variables';
+
 .pins {
-	// display: flex;
-	// flex-flow: row wrap;
-	// justify-content: flex-start;
-	// margin-left: 10px;
-	// margin-right: 10px;
 	margin: 0 auto;
 
 	.pin,
@@ -12,27 +9,12 @@
 	}
 
 	.pin {
-		// flex: 1 0 200px;
 		font-family: 'Helvetica Helvetica Neue', sans-serif;
 		box-sizing: border-box;
-		background: #efefef;
+		background: $pinterest-gray;
 		color: #555;
 		margin-top: 20px;
-		// margin: 20px 10px 0;
-		// max-width: calc(50% - 10px);
 		overflow-wrap: break-word;
 		padding: 10px;
-		
-		// @media (min-width: 480px) {
-		// 	max-width: calc(33.3333% - 10px);
-		// }
-
-		// @media (min-width: 768px) {
-		// 	max-width: calc(25% - 10px);
-		// }
-
-		// @media (min-width: 1024px) {
-		// 	max-width: 260px;
-		// }
 	}
 }
