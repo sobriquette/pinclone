@@ -6,7 +6,8 @@
 	<!-- Bootstrap compiled and minified CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'pinterest/css/pins.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'pinterest/dist/css/pins.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'pinterest/dist/css/nav.css' %}" />
 	<link rel="icon" type="image/png" href="{% static 'pinterest/assets/favicon.ico' %}">
 	<title>{% block title %} Pinmini {% endblock %}</title>
 </head>
@@ -19,5 +20,9 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<!-- Bootstrap compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Masonry for grid layout -->
+	<script src="https://unpkg.com/masonry-layout@4.2.0/dist/masonry.pkgd.min.js"></script>
+	<!-- Custom scripts -->
+	<script src="{% static 'pinterest/js/index.js' %}"></script>
 </body>
 </html>
