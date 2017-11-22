@@ -2,19 +2,20 @@
 
 {% block content %}
 {% if pins_list %}
-	<div class="pins" id="pins-list">
-		<div class="pin-sizer"></div>
-		{% for pin in pins_list %}
-		<div class="pin" id="pin-id-{{ forloop.counter }}">
-			{% for img in pin.images.all %}
-				<img src="{{ img.url }}" height="136" width="136">
-			{% endfor %}
-			<p>Title: {{ pin.title }}</p>
-			<p>Desc: {{ pin.description }}</p>
-			<p>Likes: {{ pin.like_count }}</p>
-			<a href="{{ pin.link }}">Source</a>
-		</div>
+<div class="pins" id="pins-list">
+	<div class="pin-sizer"></div>
+	{% for pin in pins_list %}
+	<div class="pin" id="pin-id-{{ forloop.counter }}">
+		{% for img in pin.images.all %}
+			<img class="pin-img" src="{{ img.url }}">
 		{% endfor %}
+		<p>Title: {{ pin.title }}</p>
+		<p>Desc: {{ pin.description }}</p>
+		<p>Likes: {{ pin.like_count }}</p>
+		<a href="{{ pin.link }}">Source</a>
 	</div>
+	{% endfor %}
+</div>
+<input type="button" value="Add Pin" class="add-pin" id="add-pin" />
 {% endif %}
 {% endblock %}

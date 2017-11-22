@@ -41,12 +41,16 @@
 		display: none;
 	}
 
-	@media (min-width: $desktop) {
+	@media (min-width: $desktop-sm) {
 		display: inline-block;
 	}
 
-	@media (min-width: $widescreen) {
-		display: 1500px;
+	@media (min-width: $desktop-md) {
+		width: 850px;
+	}
+
+	@media (min-width: $desktop-lg) {
+		width: 1150px;
 	}
 }
 
@@ -60,7 +64,7 @@
 		position: relative;
 	}
 
-	@media (min-width: $desktop) {
+	@media (min-width: $desktop-sm) {
 		margin-left: 0;
 		position: absolute;
 	}

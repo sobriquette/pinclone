@@ -57,6 +57,8 @@ Give an example
 
 React? Because that's all everyone talks about these days.
 
+Grid layout is handled by [Masonry](https://masonry.desandro.com/).
+
 ```
 Give an example
 ```
