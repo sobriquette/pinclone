@@ -39,6 +39,8 @@
     "webpack-bundle-tracker": "^0.2.0"
   },
   "dependencies": {
-    "masonry-layout": "^4.2.0"
+    "masonry-layout": "^4.2.0",
+    "node-sass": "^4.7.2",
+    "waypoints": "^4.0.1"
   }
 }

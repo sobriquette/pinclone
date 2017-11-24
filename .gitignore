@@ -1,5 +1,6 @@
 # Project-specific
 package-lock.json
+.sass-cache/*
 node_modules/*
 pinterest/node_modules
 pinterest/package-lock.json
