@@ -3,12 +3,17 @@ var $grid = $('#pins-list');
 var numPins = $('.pin').length;
 var pinMaxWidth = 260;
 var nextItem = 0;
+var pinIDPrefix = 'pin-id-';
 var $addPinBtn = $('#add-pin');
 
 var clonePin = function() {
+	var newID = numPins + nextItem;
 	var randID = Math.floor( ( Math.random() * numPins ) + 1);
 	var $item = document.getElementById( 'pin-id-' + randID );
+	// update cloned pin id so all pin ids stay unique
 	var clone = $item.cloneNode( true );
+	clone.id = pinIDPrefix + newID;
+	nextItem++;
 	return clone;
 }
 
@@ -16,11 +21,11 @@ var loadMore = function() {
 	// clone enough nodes to fill the next row
 	var end = Math.floor( $grid.outerWidth( true ) / pinMaxWidth );
 	for ( var i = 0; i < end; i++ ) {
-		clonedPin = clonePin();
-		var $cln = $( clonedPin );
+		// clonedPin = clonePin();
+		var res = clonePin();
+		var $cln = $( res );
 
 		$grid.append( $cln ).masonry( 'appended', $cln );
-		nextItem++;
 	}
 };
 
