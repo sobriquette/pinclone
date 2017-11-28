@@ -1,3 +1,4 @@
+// index.js
 // Infinite scrolling functionality for pinterest/index.html
 
 // Masonry grid for Pins
