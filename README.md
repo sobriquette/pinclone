@@ -59,6 +59,13 @@ React? Because that's all everyone talks about these days.
 
 Grid layout is handled by [Masonry](https://masonry.desandro.com/).
 
+#### Issues
+Draggabilly and Packery options conflict with each other when it comes to responsive element sizing and gutter sizing.
+
+For a fluid grid with even gutters, we would need to remove the Packery columnWidth property, which sets all element widths based on a specific element. The downside of this is that without the columnWidth property set, [Draggabilly](https://packery.metafizzy.co/draggable.html) (which enables drag and drop) allows elements to be dropped only to replace another element. This reveals some limitations to drag and drop, as once you move an element out of place, you cannot reuse the space it once occupied for another element.
+
+I prioritized the ability to drag and drop anywhere within the container over keeping the gutters even, and decided to keep the Packer.columnWidth property set.
+
 ```
 Give an example
 ```

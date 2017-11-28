@@ -4,7 +4,12 @@
   "description": "pinterest clone",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build-task:scss-compile": "node-sass-chokidar --source-map true static/pinterest/css -o static/pinterest/dist/css",
+    "build-task:autoprefixer": "postcss static/pinterest/dist/css/*.css --use autoprefixer -d static/pinterest/dist/css",
+    "sass:build": "npm-run-all -p build-task:*",
+    "sass:watch": "npm run sass:build && node-sass-chokidar static/pinterest/css -o static/pinterest/dist/css --watch --recursive",
+    "webpack": "webpack --config webpack.config.js",
+    "dev": "npm-run-all run-p sass:*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +30,7 @@
   },
   "homepage": "https://github.com/sobriquette/pinclone#readme",
   "devDependencies": {
+    "ajv": "^5.5.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -33,14 +39,17 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2",
+    "postcss-cli": "^4.1.1",
     "sass-loader": "^6.0.6",
+    "spdx-license-ids": "^2.0.1",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-bundle-tracker": "^0.2.0"
   },
   "dependencies": {
-    "masonry-layout": "^4.2.0",
-    "node-sass": "^4.7.2",
-    "waypoints": "^4.0.1"
+    "interactjs": "^1.2.9",
+    "masonry-layout": "^4.2.0"
   }
 }

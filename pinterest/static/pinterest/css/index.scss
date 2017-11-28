@@ -1,0 +1,77 @@
+@import 'variables';
+
+body {
+	padding-top: 60px;
+}
+
+#drag-container {
+	margin: 0 auto;
+	max-width: 90%;
+
+	.gutter-sizer {
+		width: 0;
+	}
+
+	.widget,
+	.grid-sizer {
+		width: 100%; /* fallback if calc isn't supported */
+	}
+
+	.widget {
+		float: left;
+		height: 200px;
+
+		.drag-handle {
+			background-color: black;
+			height: 25px;
+			width: 25px;
+			
+			&:hover {
+				cursor: move;
+			}
+		}
+
+	}
+
+	#widget-1 { background-color: blue; }
+
+	#widget-2 { 
+		background-color: red;
+		overflow: scroll;
+	}
+
+	#widget-3 { background-color: green; }
+
+	@media ( min-width: $mobile-md ) {
+		.widget,
+		.grid-sizer {
+			width: 12%; /* fallback if calc isn't supported */
+			width: calc( 100% / 6 );
+
+			&--lg {
+				width: 78%;
+				width: calc( 100% / 6 * 3 );
+			}
+		}
+
+		.gutter-sizer {
+			width: 10px;
+		}
+	}
+}
+
+/* Draggabilly adds is-dragging */
+.grid-item.is-dragging,
+/* Packery adds class while transitioning to drop position */
+.grid-item.is-positioning-post-drag {
+  background: #C90;
+  z-index: 2; /* keep dragged item on top */
+}
+
+.packery-drop-placeholder {
+  outline: 3px dashed #444;
+  outline-offset: -6px;
+  /* transition position changing */
+  -webkit-transition: -webkit-transform 0.2s;
+          transition: transform 0.2s;
+}
