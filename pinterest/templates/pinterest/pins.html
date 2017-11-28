@@ -1,0 +1,16 @@
+<div class="widget widget--ht-lg widget--wd-lg" id="pins-widget">
+	<div class="pins" id="pins-list">
+		<div class="pin-sizer"></div>
+		{% for pin in pins_list %}
+		<div class="pin" id="pin-id-{{ forloop.counter }}">
+			{% for img in pin.images.all %}
+				<img class="pin-img" src="{{ img.url }}">
+			{% endfor %}
+			<p>Title: {{ pin.title }}</p>
+			<p>Desc: {{ pin.description }}</p>
+			<p>Likes: {{ pin.like_count }}</p>
+			<a href="{{ pin.link }}">Source</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>

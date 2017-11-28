@@ -1,55 +1,14 @@
 {% extends 'pinterest/base.html' %}
 
 {% block content %}
+<div class="container">
+	<button type="button" class="btn btn-info" id="widgets-btn">Add more widgets</button>
+</div>
 <div id="drag-container">
 	<div class="grid-sizer"></div>
 	<div class="gutter-sizer"></div>
-	<div class="widget" id="widget-1">
-		<div class="drag-handle"></div>
-	</div>
-	<div class="widget widget--lg" id="widget-2">
-		<ul id="scroll-content">
-			<li>item 1</li>
-			<li>item 2</li>
-			<li>item 3</li>
-			<li>item 4</li>
-			<li>item 5</li>
-			<li>item 6</li>
-			<li>item 7</li>
-			<li>item 8</li>
-			<li>item 9</li>
-			<li>item 10</li>
-			<li>item 11</li>
-			<li>item 12</li>
-			<li>item 13</li>
-			<li>item 14</li>
-			<li>item 15</li>
-			<li>item 16</li>
-			<li>item 17</li>
-			<li>item 18</li>
-			<li>item 19</li>
-			<li>item 20</li>
-		</ul>
-	</div>
-	<div class="widget" id="widget-3">
-		<div class="drag-handle"></div>
-	</div>
+	{% if pins_list %}
+		{% include 'pinterest/pins.html' %}
+	{% endif %}
 </div>
-{% if pins_list %}
-	<div class="pins" id="pins-list">
-		<div class="pin-sizer"></div>
-		{% for pin in pins_list %}
-		<div class="pin" id="pin-id-{{ forloop.counter }}">
-			{% for img in pin.images.all %}
-				<img class="pin-img" src="{{ img.url }}">
-			{% endfor %}
-			<p>Title: {{ pin.title }}</p>
-			<p>Desc: {{ pin.description }}</p>
-			<p>Likes: {{ pin.like_count }}</p>
-			<a href="{{ pin.link }}">Source</a>
-		</div>
-		{% endfor %}
-	</div>
-	<!-- <input type="button" value="Add Pin" class="add-pin" id="add-pin" /> -->
-{% endif %}
 {% endblock %}

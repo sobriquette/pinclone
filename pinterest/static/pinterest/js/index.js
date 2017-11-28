@@ -1,14 +1,29 @@
-// Infinite scrolling functionality for Pinterest app index page
+// Infinite scrolling functionality for pinterest/index.html
+
+// Masonry grid for Pins
 var $pinsGrid = $('#pins-list');
 var numPins = $('.pin').length;
-var $dragContainer = $('#drag-container');
 var pinMaxWidth = 260;
 var nextItem = 0;
 var pinIDPrefix = 'pin-id-';
-var $addPinBtn = $('#add-pin');
 
-var nextWidgetItem = 21;
-var $wrapper = $("#widget-2");
+// Drag-and-drop grid using Packery and Draggabilly
+var $dragContainer = $('#drag-container');
+var nextWidgetId = $('.widget').length;
+var $addWidgetBtn = $('#widgets-btn');
+
+var makeElemDraggable = function( i, widget ) {
+	var draggie = new Draggabilly( widget, function() {
+		grid: [ 20, 20 ];
+	});
+
+	if (draggie.element.id === 'pins-widget') {
+		initMasonry();
+	}
+
+	// bind drag events to Packery
+	$dragContainer.packery( 'bindDraggabillyEvents', draggie );
+};
 
 var initMasonry = function () {
 	$pinsGrid.masonry({
@@ -31,18 +46,7 @@ var initPackery = function() {
 
 	});
 
-	$dragContainer.find('.widget').each( function( i, widget ) {
-		var draggie = new Draggabilly( widget, {
-			handle: '.drag-handle'
-		});
-		
-		if (draggie.element.id == 'widget-2') {
-			initMasonry();
-		}
-
-		// bind drag events to Packery
-		$dragContainer.packery( 'bindDraggabillyEvents', draggie );
-	});
+	$dragContainer.find('.widget').each( makeElemDraggable );
 };
 
 var clonePin = function() {
@@ -68,76 +72,56 @@ var loadMore = function() {
 	}
 };
 
-var removePins = function( id ) {
-	console.log("need to remove pins!");
-};
-
 var updateGrid = function( isDown ) {
 	if ( isDown ) {
 		loadMore();
-	} else {
-		removePins();
 	}
 };
 
-var doScroll = function() {
+var infiniteScroll = function() {
 	var gridH = $pinsGrid.outerHeight( true );
 	var prvScrllTop = 0;
+	var $this = $(this);
+	var windowScrllTop = $this.scrollTop();
+	var windowH = $this.outerHeight();
 
-	$(window).on( 'scroll', function() {
-		var $this = $(this);
-		var scrllTop = $this.scrollTop();
-
-		if ( scrllTop > prvScrllTop ) {
-			if ( scrllTop - 350 >= gridH ) {
-				updateGrid( true );
-				gridH = gridH + (scrllTop - gridH);
-			}
-		} else {
-			updateGrid( false );
-		}
-		prvScrllTop = scrllTop;
-	})
+	if ( windowScrllTop >= gridH - windowH ) {
+		updateGrid( true );
+		infiniteScroll();
+	}
 };
 
-var widget2Scroll = function () {
-	var top = $wrapper.scrollTop();
-	var ulH = $('#scroll-content').outerHeight();
-	var wrapperH = $wrapper.outerHeight();
-
-	if ( top >= ulH - wrapperH ) {
-		for (var i = 0; i < 4; i++) {
-			$('#scroll-content').append('<li>item ' + nextWidgetItem + '</li>');
-		}
-		nextWidgetItem++;
-		widget2Scroll();
+var getRandomColor = function() {
+	var letters = '0123456789ABCDEF';
+	var color = '#';
+	for (var i = 0; i < 6; i ++) {
+		color += letters[ Math.floor( Math.random() * 16 ) ];
 	}
+
+	return color;
+}
+
+var addNewWidgets = function() {
+	var newWidget = '<div class="widget" id="widget-' + nextWidgetId +'"></div>';
+	var $w = $(newWidget);
+
+	// set a color for new widget
+	$w.css('background-color', getRandomColor());
+
+	$dragContainer.append( $w ).packery( 'appended', $w );
+	nextWidgetId++;
+
+	$w.each( makeElemDraggable );
 };
 
 $(document).ready(function() {
 	initPackery();
 
-	// $pinsGrid.masonry({
-	// 	itemSelector: '.pin',
-	// 	columnWidth: '.pin-sizer',
-	// 	gutter: 20,
-	// 	fitWidth: true
-	// });
-
-	// $pinsGrid.imagesLoaded().progress( function() {
-	// 	$pinsGrid.masonry( 'layout' )
-	// });
-
-	$wrapper.on("scroll", function () {
-		widget2Scroll();
+	$addWidgetBtn.on( 'click', function() {
+		addNewWidgets();
 	});
 
-
-	doScroll();
-
-	// $('#add-pin').on( 'click', function() {
-	// 	var clonedPin = clonePin( numPins );
-	// 	var $cln = $( clonedPin );
-	// 	$pinsGrid.append( $cln ).masonry( 'appended', $cln );
-	// });
+	$(window).on('scroll', function() {
+		infiniteScroll();
+	});
 });
