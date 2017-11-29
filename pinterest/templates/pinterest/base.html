@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'pinterest/dist/css/pins.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'pinterest/dist/css/nav.css' %}" />
 	<link rel="shortcut icon" href="{% static 'pinterest/assets/favicon.ico' %}" />
+
 	<title>{% block title %} Pinmini {% endblock %}</title>
 </head>
 <body>
@@ -28,6 +29,7 @@
 	<script src="https://unpkg.com/masonry-layout@4.2.0/dist/masonry.pkgd.min.js"></script>
 	<script src="https://unpkg.com/interactjs@1.3.0/dist/interact.min.js"></script>
 	<!-- Custom scripts -->
+	<script src="{% static 'pinterest/js/infinite-scroll.js' %}"></script>
 	<script src="{% static 'pinterest/js/index.js' %}"></script>
 </body>
 </html>
