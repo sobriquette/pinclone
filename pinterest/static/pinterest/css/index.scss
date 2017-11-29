@@ -6,7 +6,7 @@ body {
 
 .container {
 	height: 0;
-	margin: $padding auto 0;
+	margin: $padding * 2 auto;
 	width: 93%;
 
 	#widgets-btn {
@@ -49,7 +49,6 @@ body {
 	@media ( min-width: $mobile-md ) {
 		.widget,
 		.grid-sizer {
-			margin-top: $padding * 2;
 			width: 12%; /* fallback if calc isn't supported */
 			width: calc( 100% / 9 );
 
