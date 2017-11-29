@@ -10,14 +10,14 @@ var pinIDPrefix = 'pin-id-';
 var infiniteScrollProps = {
 	gridSelector : $pinsGrid,
 	itemSelector : '.pin',
+	numElem: numPins,
+	elemIDPrefix: pinIDPrefix,
 	columnWidth : '.pin-sizer',
 	gutter : 20,
-	fitWidth: true,
-	numElem: numPins,
-	elemIDPrefix: pinIDPrefix
+	fitWidth: true
 };
 
-// wrapper for infinite scrolling functionality
+// Instantiate the infinite scroll grid
 var infiniteScrollGrid = makeInfiniteGrid( infiniteScrollProps );
 
 // Properties for drag-and-drop enabled container
@@ -32,17 +32,19 @@ var drgContainerProps = {
 	gutter : '.gutter-sizer'
 };
 
-// Wrapper for drag-and-drop functionality
+// Instantiate drag and drop container
 var draggableContainer = makeDraggableContainer( numWidgets );
 
 $(document).ready(function() {
-	draggableContainer.initPackery( $drgContainer, drgContainerProps );
-	infiniteScrollGrid.initMasonry();
+	draggableContainer.initPackery( $drgContainer, drgContainerProps ); // Initializes the packery grid
+	infiniteScrollGrid.initMasonry(); // Initializes the masonry grid
 
+	// Add new widgets to the draggable container
 	$addWidgetBtn.on( 'click', function() {
 		draggableContainer.addNewElems( $drgContainer );
 	});
 
+	// Do infinite scrolling when we reach the bottom of the browser window
 	$(window).on('scroll', function() {
 		var $this = $(this);
 		infiniteScrollGrid.infiniteScroll( $this );
