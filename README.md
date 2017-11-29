@@ -68,6 +68,19 @@ $(window).on('scroll', function() {
 });
 ```
 
+#### Screenshots
+The page of pins on page load:
+![alt text][onPageLoad]
+
+[onPageLoad]: https://github.com/sobriquette/pinclone/blob/master/screenshots/grid-of-pins.png "Pins on page load"
+
+Hover on pin reveals additional pin information:
+![alt text][onPinHover]
+
+[onPinHover]: https://github.com/sobriquette/pinclone/blob/master/screenshots/pins-on-hover.png "Pins on hover"
+
+And if it suits your fancy, I also have a [screencast](https://github.com/sobriquette/pinclone/blob/master/screenshots/infinite-scroll-demo.mov) of the infinite scrolling.
+
 #### Caveats
 One thing to watch out for with this approach is that if the page gets long enough and the DOM deep enough, we could run out of buffer and this would impact page performance. 
 
@@ -107,6 +120,17 @@ var drgContainerProps = {
 	gutter : '.gutter-sizer'			// a selector element can be used for responsive sizing, but an integer value is fine otherwis
 };
 ```
+
+#### Screenshots
+Newly added widgets after clicking the _"Add more widgets"_ button:
+![alt text][addedWidgets]
+
+[addedWidgets]: https://github.com/sobriquette/pinclone/blob/master/screenshots/adding-widgets.png "Grid after adding widgets"
+
+Guiding lines as you drag and drop show where the element will snap to on the grid:
+![alt text][guidingLines]
+
+[guidingLines]: https://github.com/sobriquette/pinclone/blob/master/screenshots/drag-drop-guidelines.png "Guiding lines showing where element drops"
 
 #### Caveats
 **#1**
