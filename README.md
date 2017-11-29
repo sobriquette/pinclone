@@ -8,6 +8,15 @@ Building a Pinterest-like grid using Django
    + Build the infinite scrolling in a modular way so that this could be easily reused in other pages.
 2. Page should be able to accommodate other widgets that can be dragged and dropped onto the page.
 
+**Table of Contents**
+
+* [Result](https://github.com/sobriquette/pinclone#result)
+* [Infinite Scroll](https://github.com/sobriquette/pinclone#infinite-scroll)
+* [Drag and Drop](https://github.com/sobriquette/pinclone#drag-and-drop)
+* [Process](https://github.com/sobriquette/pinclone#process)
+* [Technical Details](https://github.com/sobriquette/pinclone#technical-details)
+* [Sources](https://github.com/sobriquette/pinclone#sources)
+
 ## Result
 If you are looking to run this project locally, the entirety of it is captured on [my GitHub repository](https://github.com/sobriquette/pinclone). The page that the pins with infinite scrolling + drag-and-drop functionality is hosted at: http://127.0.0.1:8000/pinterest/.
 
@@ -196,10 +205,10 @@ I also created a virtual envrionment with virtualenv and virtualenvwrapper to in
 * [Masonry](https://masonry.desandro.com/)
 * [Packery](https://packery.metafizzy.co/)
 * [Draggabilly](https://draggabilly.desandro.com/)
-* Lots and lots of Stack Overflow
+* Lots of Stack Overflow!
 
 ## Authors
-* **Melody Lin**
-[Personal Website](https://sobriquette.github.io/)
-[GitHub](https://github.com/sobriquette)
-[LinkedIn](https://www.linkedin.com/in/linmelody/)
+**Melody Lin**
+* [Personal Website](https://sobriquette.github.io/)
+* [GitHub](https://github.com/sobriquette)
+* [LinkedIn](https://www.linkedin.com/in/linmelody/)
