@@ -6,7 +6,7 @@
 	
 	.pin,
 	.pin-sizer {
-		width: 260px;
+		width: $pin-size;
 	}
 
 	.pin {
@@ -19,25 +19,75 @@
 		margin-top: $padding * 2;
 		overflow-wrap: break-word;
 
-		.pin-img {
-			border-radius: $border-radius;
-			max-height: 100%;
-			max-width: 100%;
-		}
-
 		.pin-content {
-			padding: $padding;
 
-			.likes {
+			.pin-img {
+				border-radius: $border-radius;
+				max-height: 100%;
+				width: $pin-size;
+			}
+
+			.pin-likes {
 				.heart {
 					fill: $pinterest-red;
 					position: relative;
 					width: $padding;
 					top: 2px;
 				}
-				
 			}
 
+			&__top {
+				text-align: left;
+				position: relative;
+
+				.overlay {
+					background: none;
+					background: linear-gradient( to bottom, transparent, transparent );
+					border-radius: 25px;
+					height: 100%;
+					padding: 45px 0 66px 0;
+					opacity: 0;
+					position: absolute;
+					top: 0;
+					-webkit-transition: opacity 0.25s ease;
+					-moz-transition: opacity 0.25s ease;
+					width: 100%;
+				}
+
+				.pin-link {
+					bottom: $padding;
+					color: $pinterest-white;
+					left: $padding;
+					position: absolute;
+					visibility: hidden;
+				}
+
+				.pin-desc {
+					top: $padding * 2;
+					color: $pinterest-white;
+					left: $padding;
+					position: absolute;
+					visibility: hidden;
+					width: $pin-size - ( $padding * 2 );
+				}
+
+				&:hover {
+					.pin-link,
+					.pin-desc {
+						visibility: visible;
+					}
+
+					.overlay {
+						background: $pinterest-gray;
+						background: linear-gradient( to bottom, $pinterest-white, $pinterest-black );
+						opacity: 0.5;
+					}
+				}
+			}
+
+			&__bottom {
+				padding: $padding;
+			}
 		}
 
 		&:hover {
