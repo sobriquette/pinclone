@@ -10,7 +10,7 @@
 
 .logo {
 	margin-left: 25px;
-	margin-right: $margin-padding;
+	margin-right: $padding;
 }
 
 .pin-logo {
@@ -60,7 +60,7 @@
 	position: absolute;
 
 	@media (min-width: $tablet) {
-		margin-left: $margin-padding;
+		margin-left: $padding;
 		position: relative;
 	}
 
@@ -79,7 +79,7 @@
 
 .notifications-btn,
 .settings-btn {
-	margin: 12px $margin-padding 0;
+	margin: 12px $padding 0;
 }
 
 #home {
@@ -89,5 +89,5 @@
 }
 
 .nav-btns {
-	margin-right: $margin-padding;
+	margin-right: $padding;
 }

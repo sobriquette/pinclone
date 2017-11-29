@@ -11,16 +11,37 @@
 
 	.pin {
 		font-family: 'Helvetica Helvetica Neue', sans-serif;
+		font-size: $font-sm;
+		font-weight: bold;
+		border-radius: $border-radius;
 		box-sizing: border-box;
-		background: $pinterest-gray;
 		color: #555;
-		margin-top: $margin-padding * 2;
+		margin-top: $padding * 2;
 		overflow-wrap: break-word;
-		padding: 10px;
 
 		.pin-img {
+			border-radius: $border-radius;
 			max-height: 100%;
 			max-width: 100%;
+		}
+
+		.pin-content {
+			padding: $padding;
+
+			.likes {
+				.heart {
+					fill: $pinterest-red;
+					position: relative;
+					width: $padding;
+					top: 2px;
+				}
+				
+			}
+
+		}
+
+		&:hover {
+			background: $pinterest-gray;
 		}
 	}
 }
