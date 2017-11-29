@@ -1,0 +1,1 @@
+web: gunicorn pinclone/pinclone.wsgi --log-file -
