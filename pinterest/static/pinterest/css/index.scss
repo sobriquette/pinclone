@@ -1,12 +1,22 @@
 @import 'variables';
 
 body {
-	padding-top: 80px;
+	padding-top: $margin-padding * 4;
 }
 
 .container {
-	padding: $margin-padding;
-	width: 80%;
+	height: 0;
+	margin: $margin-padding auto 0;
+	width: 93%;
+
+	#widgets-btn {
+		background: $pinterest-gray;
+		color: $pinterest-font-black;
+
+		&:hover {
+			background: $pinterest-gray-hover;
+		}
+	}
 }
 
 #drag-container {

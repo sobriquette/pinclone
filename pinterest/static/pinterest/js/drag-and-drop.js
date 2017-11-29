@@ -1,52 +1,41 @@
 // drag-and-drop.js
+'use strict';
 
-function makeDraggableContainer( container, numElem, containerProps, infiniteScrollProps ) {
+function makeDraggableContainer( numElem ) {
 	return {
 		// properties
-		container,
 		numElem,
-		containerProps,
-		infiniteScrollProps,
+		
 		// methods
-
 		// makes a Draggability object out of the given widget
-		makeElemDraggable( i, widget ) {
-			var draggie = new Draggabilly( widget, function() {
-				grid: [ 20, 20 ];
-			});
+		makeElemDraggable( pckry ) {
+			var $pckry = $(pckry);
 
-			if (draggie.element.class === 'infinite-scroll') {
-				initMasonry();
-			}
+			return function( i, widget ) {
+				var draggie = new Draggabilly( widget, function() {
+					grid: [ 20, 20 ];
+				});
 
-			// bind drag events to Packery
-			this.container.packery( 'bindDraggabillyEvents', draggie );
+				// if (draggie.element.className.indexOf('infinite-scroll') != -1) {
+				// 	this.initMasonry;
+				// }
+
+				// bind drag events to Packery
+				$pckry.packery( 'bindDraggabillyEvents', draggie );	
+			};
 		},
 
-		// initialize Masonry grid for infinite scroll widget
-		initMasonry() {
-			$pinsGrid.masonry({
-				itemSelector: this.infiniteScrollProps.itemSelector,
-				columnWidth: this.infiniteScrollProps.columnWidth,
-				gutter: this.infiniteScrollProps.gutter,
-				fitWidth: this.infiniteScrollProps.fitWidth
-			});
-
-			$pinsGrid.imagesLoaded().progress( function() {
-				$pinsGrid.masonry( 'layout' )
-			});
-		},
-
-		// initialize Packery grid for drag and drop grid
-		initPackery() {
-			this.container.packery({
-				itemSelector: this.containerProps.itemSelector,
-				columnWidth: this.containerProps.columnWidth,
-				gutter: this.containerProps.gutter
+		// initialize Packery and make its elements draggable
+		initPackery( container, containerProps ) {
+			var $pckry = $( container );
+			$pckry.packery({
+				itemSelector: containerProps.itemSelector,
+				columnWidth: containerProps.columnWidth,
+				gutter: containerProps.gutter
 
 			});
 
-			this.container.find(this.containerProps.itemSelector).each( this.makeElemDraggable );
+			$pckry.find( containerProps.itemSelector ).each( this.makeElemDraggable( $pckry ) );
 		},
 		
 		// generate a random color for the new widget
@@ -59,19 +48,28 @@ function makeDraggableContainer( container, numElem, containerProps, infiniteScr
 
 			return color;
 		},
+
+		createNewDivElem() {
+			var newDivElem = '<div class="widget" id="widget-' + this.numElem +'"></div>'
+			return newDivElem;
+		},
+
+		setElemColor( el ) {
+			el.css('background-color', this.getRandomColor());
+		},
 		
 		// do add widget and make it draggable actions
-		addNewWidgets() {
-			var newWidget = '<div class="widget" id="widget-' + this.numElem +'"></div>';
+		addNewElems( container ) {
+			var newWidget = this.createNewDivElem();
 			var $w = $(newWidget);
 
 			// set a color for new widget
-			$w.css('background-color', this.getRandomColor());
+			this.setElemColor( $w );
 
-			this.container.append( $w ).packery( 'appended', $w );
+			container.append( $w ).packery( 'appended', $w );
 			this.numElem++;
 
-			$w.each( this.makeElemDraggable );
-		};
+			$w.each( this.makeElemDraggable( container ) );
+		}
 	};
 }
