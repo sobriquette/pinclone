@@ -23,7 +23,9 @@ If you are looking to run this project locally, the entirety of it is captured o
 ### Building a back-end
 I decided to write a lightweight Django app to host and display the web page and leverage the SQLite database to hold the JSON data provided. This enables us to create, read, update, and delete pins from the page more easily than hardcoding it in HTML. It also allows us to use Python to filter out JSON data we do not necessarily need, and clearly define relationships between individual JSON objects.
 
+---
 ### Infinite Scroll
+---
 #### How it works
 For a fluid and beautiful grid layout, I used the [Masonry](https://masonry.desandro.com/) JavaScript library.
 
@@ -34,7 +36,7 @@ In order to provide a plug-and-play experience, the code for infinite scrolling 
 
 This means that to use infinite scroll on any other page, a developer only has to provide a couple jQuery selectors, call an initialization method, and the infinite scroll method.
 
-```
+```javascript
 // some-page.js -- any page script that wants infinite scroll
 // We just need to provide the following:
 
@@ -90,7 +92,9 @@ Another consideration is reducing the amount of reflow that occurs when we remov
 
 A helpful resource for the general gist of how this would work is described [here](https://developers.google.com/web/updates/2016/07/infinite-scroller). Implementing these enhancements would introduce additional complexity and time, but are definitely issues I would work to resolve in future iterations of this project!  
 
+---
 ### Drag and Drop
+---
 ** Assumption: **
 *I assumed that the infinite-scroll element (the grid of Pinterest Pins) is expected to be re-arrangeable as well, and also required drag-and-drop functionality.*
 
@@ -106,7 +110,7 @@ In order to provide a plug-and-play experience, the code for a drag-and-drop con
 
 This means that to make all elements within the container draggable and droppable, a developer only has to provide a couple jQuery selectors and call an initialization method.
 
-```
+```javascript
 // some-page.js -- any page script that wants drag-and-drop
 // We just need to provide the following:
 
@@ -163,7 +167,7 @@ I also decided to pick the attributes most commonly used in a pin (as it is disp
 To parse the JSON data, I wrote a Python script called *parsePins.py*. The script runs through the JSON and parses each JSON object and inserts it into an appropriate Python dictionary based on classes I had written to describe the data (Pinner, Pin, Board, Image).
 
 
-```
+```python
 # from parsePins.py
 
 class Pin:
