@@ -1,0 +1,70 @@
+.navbar {
+  margin-bottom: 0; }
+
+.container-fluid {
+  width: 100%; }
+
+.logo {
+  margin-left: 25px;
+  margin-right: 15px; }
+
+.pin-logo {
+  margin-top: 10px; }
+  .pin-logo path {
+    fill: #bd081c; }
+
+.search-icon path,
+.notifications-icon path,
+.settings-icon path {
+  fill: #b5b5b5; }
+
+.search-bar {
+  background-color: #efefef;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 10px 40px;
+  width: 450px; }
+  @media (min-width: 768px) {
+    .search-bar {
+      display: none; } }
+  @media (min-width: 1024px) {
+    .search-bar {
+      display: inline-block; } }
+  @media (min-width: 1440px) {
+    .search-bar {
+      width: 850px; } }
+  @media (min-width: 1920px) {
+    .search-bar {
+      width: 1150px; } }
+
+.search-btn {
+  background-color: transparent;
+  padding: 10px;
+  position: absolute; }
+  @media (min-width: 768px) {
+    .search-btn {
+      margin-left: 15px;
+      position: relative; } }
+  @media (min-width: 1024px) {
+    .search-btn {
+      margin-left: 0;
+      position: absolute; } }
+
+.search-btn,
+.notifications-btn,
+.settings-btn {
+  border: none;
+  background-color: transparent; }
+
+.notifications-btn,
+.settings-btn {
+  margin: 12px 15px 0; }
+
+#home a:active {
+  color: #000000; }
+
+.nav-btns {
+  margin-right: 15px; }
+
+/*# sourceMappingURL=nav.css.map */

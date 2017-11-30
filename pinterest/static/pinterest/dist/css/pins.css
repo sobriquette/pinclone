@@ -1,0 +1,65 @@
+.pins {
+  margin: 0 auto;
+  position: relative; }
+  .pins .pin,
+  .pins .pin-sizer {
+    width: 260px; }
+  .pins .pin {
+    font-family: 'Helvetica Helvetica Neue', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 25px;
+    box-sizing: border-box;
+    color: #555;
+    margin-top: 30px;
+    overflow-wrap: break-word; }
+    .pins .pin .pin-content .pin-img {
+      border-radius: 25px;
+      max-height: 100%;
+      width: 260px; }
+    .pins .pin .pin-content .pin-likes .heart {
+      fill: #bd081c;
+      position: relative;
+      width: 15px;
+      top: 2px; }
+    .pins .pin .pin-content__top {
+      text-align: left;
+      position: relative; }
+      .pins .pin .pin-content__top .overlay {
+        background: none;
+        background: linear-gradient(to bottom, transparent, transparent);
+        border-radius: 25px;
+        height: 100%;
+        padding: 45px 0 66px 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        width: 100%; }
+      .pins .pin .pin-content__top .pin-link {
+        bottom: 15px;
+        color: #ffffff;
+        left: 15px;
+        position: absolute;
+        visibility: hidden; }
+      .pins .pin .pin-content__top .pin-desc {
+        top: 30px;
+        color: #ffffff;
+        left: 15px;
+        position: absolute;
+        visibility: hidden;
+        width: 230px; }
+      .pins .pin .pin-content__top:hover .pin-link,
+      .pins .pin .pin-content__top:hover .pin-desc {
+        visibility: visible; }
+      .pins .pin .pin-content__top:hover .overlay {
+        background: #efefef;
+        background: linear-gradient(to bottom, #ffffff, #000000);
+        opacity: 0.5; }
+    .pins .pin .pin-content__bottom {
+      padding: 15px; }
+    .pins .pin:hover {
+      background: #efefef; }
+
+/*# sourceMappingURL=pins.css.map */

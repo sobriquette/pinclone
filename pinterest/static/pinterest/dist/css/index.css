@@ -1,0 +1,58 @@
+body {
+  padding-top: 60px; }
+
+.container {
+  height: 0;
+  margin: 30px auto 60px;
+  width: 93%; }
+  .container #widgets-btn {
+    background: #efefef;
+    color: #211922; }
+    .container #widgets-btn:hover {
+      background: #e0e0e0; }
+
+#drag-container {
+  margin: 0 auto;
+  max-width: 95%; }
+  #drag-container .gutter-sizer {
+    width: 0; }
+  #drag-container .widget,
+  #drag-container .grid-sizer {
+    width: 100%;
+    /* fallback if calc isn't supported */ }
+  #drag-container .widget {
+    float: left;
+    height: 400px; }
+    #drag-container .widget:hover {
+      cursor: move; }
+    #drag-container .widget--ht-lg {
+      height: auto; }
+  @media (min-width: 480px) {
+    #drag-container .widget,
+    #drag-container .grid-sizer {
+      width: 12%;
+      /* fallback if calc isn't supported */
+      width: calc( 100% / 9 ); }
+      #drag-container .widget--wd-lg,
+      #drag-container .grid-sizer--wd-lg {
+        margin-top: 0;
+        width: 78%;
+        width: calc( 100% / 9 * 6 ); }
+    #drag-container .gutter-sizer {
+      width: 5px; } }
+
+/* Draggabilly adds is-dragging */
+.grid-item.is-dragging,
+.grid-item.is-positioning-post-drag {
+  background: #C90;
+  z-index: 2;
+  /* keep dragged item on top */ }
+
+.packery-drop-placeholder {
+  outline: 3px dashed #444;
+  outline-offset: -6px;
+  /* transition position changing */
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: transform 0.2s; }
+
+/*# sourceMappingURL=index.css.map */
